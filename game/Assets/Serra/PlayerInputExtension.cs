@@ -8,6 +8,7 @@ namespace Serra{ public class PlayerInputExtension : MonoBehaviour{
 
 void Awake(){
     InputSystem.set_player_input(player_input);
+    InputSystem.set_action_map(player_input.defaultActionMap.ToString());
 }
 
 }}
