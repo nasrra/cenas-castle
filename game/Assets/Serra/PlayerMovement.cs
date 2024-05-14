@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Serra{public class PlayerMovement : MonoBehaviour{
@@ -8,11 +7,13 @@ namespace Serra{public class PlayerMovement : MonoBehaviour{
 
 
 [Header("References")]
-[SerializeField] Rigidbody2D rb;    
-[Header("Speeds")]
+[SerializeField] Rigidbody2D rb;
+[SerializeField] LayerMask ground_layer;    
+[Header("Values")]
 [SerializeField] float move_speed; 
 [SerializeField] float jump_force;
 [SerializeField] float jump_decay;
+[SerializeField] float ground_check_dst;
 [Header("Constraints")]
 [SerializeField] bool can_walk;
 [SerializeField] bool can_jump;
@@ -29,6 +30,12 @@ void Start(){
         action_map.jump_start_event         += ctx => jump_begin();
         action_map.jump_end_event           += ctx => jump_end();
     }
+}
+
+void Update(){
+    if(Physics2D.Raycast(transform.position, Vector2.down, ground_check_dst, ground_layer))
+        can_jump = true;
+    Debug.DrawRay(transform.position, Vector3.down * ground_check_dst, Color.green);
 }
 
 #region move_left
@@ -82,6 +89,7 @@ IEnumerator jump(){
 
 public void jump_end(){
     StopCoroutine("jump");
+    can_jump = false;
 }
 #endregion
 
