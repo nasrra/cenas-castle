@@ -14,7 +14,7 @@ private static Dictionary<string, ActionMap> maps = new Dictionary<string, Actio
 
 
 public static void set_player_input(PlayerInput player_input){
-    Debug.Log(to_string()+" Player Input Set: "+player_input);
+    Debug.Log(to_string()+" Player Input Set");
     input = player_input;
 }
 
