@@ -1,15 +1,21 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Serra{public class PlayerMovement : MonoBehaviour{
 
 
 
+
 [Header("References")]
 [SerializeField] Rigidbody2D rb;    
 [Header("Speeds")]
-[SerializeField] float move_speed;
+[SerializeField] float move_speed; 
 [SerializeField] float jump_force;
+[SerializeField] float jump_decay;
+[Header("Constraints")]
+[SerializeField] bool can_walk;
+[SerializeField] bool can_jump;
 
 
 
@@ -27,13 +33,13 @@ void Start(){
 
 #region move_left
 public void move_left_begin(){
-    StartCoroutine("move_left");
+    if(can_walk)
+        StartCoroutine("move_left");
 }
 
 IEnumerator move_left(){
     while(true){
-        Debug.Log("move_left!");
-        rb.AddForce(new Vector2(-0.1f, 0.0f));
+        rb.AddForce(new Vector2(-move_speed, 0.0f));
         yield return null;
     }
 }
@@ -44,13 +50,13 @@ public void move_left_end(){
 #endregion
 #region move_right
 public void move_right_begin(){
-    StartCoroutine("move_right");
+    if(can_walk)
+        StartCoroutine("move_right");
 }
 
 IEnumerator move_right(){
     while(true){
-        Debug.Log("move_right!");
-        rb.AddForce(new Vector2(0.1f, 0.0f));
+        rb.AddForce(new Vector2(move_speed, 0.0f));
         yield return null;
     }
 }
@@ -61,13 +67,15 @@ public void move_right_end(){
 #endregion
 #region jump
 public void jump_begin(){
-    StartCoroutine("jump");
+    if(can_jump)
+        StartCoroutine("jump");
 }
 
 IEnumerator jump(){
-    while(true){
-        Debug.Log("jump!");
-        rb.AddForce(new Vector2(0.0f, 0.1f));
+    float force = jump_force;
+    while(force > 0.0){
+        rb.AddForce(new Vector2(0.0f, force));
+        force -= Time.deltaTime * jump_decay * jump_force;
         yield return null;
     }
 }
@@ -87,6 +95,8 @@ void OnDestroy(){
         action_map.jump_end_event           -= ctx => jump_end();    
     }    
 }
+
+
 
 
 }}
