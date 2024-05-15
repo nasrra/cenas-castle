@@ -52,7 +52,7 @@ public void move_left_begin(){
 IEnumerator move_left(){
     while(true){
         if(rb.velocity.x >= -move_speed)
-            rb.AddForce(new Vector2(-acceleration, 0.0f));
+            rb.AddForce(new Vector2(-acceleration * Time.deltaTime, 0.0f));
         yield return null;
     }
 }
@@ -70,7 +70,7 @@ public void move_right_begin(){
 IEnumerator move_right(){
     while(true){
         if(rb.velocity.x <= move_speed)
-            rb.AddForce(new Vector2(acceleration, 0.0f));
+            rb.AddForce(new Vector2(acceleration * Time.deltaTime, 0.0f));
         yield return null;
     }
 }
@@ -88,7 +88,7 @@ public void jump_begin(){
 IEnumerator jump(){
     float force = jump_force;
     while(force > 0.0){
-        rb.AddForce(new Vector2(0.0f, force));
+        rb.AddForce(new Vector2(0.0f, force * Time.deltaTime));
         force -= Time.deltaTime * jump_decay * jump_force;
         yield return null;
     }
