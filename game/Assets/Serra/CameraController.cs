@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +8,7 @@ namespace Serra{ public class CameraController : MonoBehaviour{
 
 Dictionary<string, CameraExtenstion> cameras = new Dictionary<string, CameraExtenstion>();
 CameraExtenstion active_camera;
+Coroutine movement_routine;
 
 
 void Awake(){
@@ -30,24 +33,39 @@ public CameraExtenstion get_actve_camera(){
 void begin_active_camera(){
     if(active_camera == null)
         return;
+
     active_camera.gameObject.SetActive(true);
-    switch(active_camera.get_type()){
+
+    switch(active_camera.camera_type){
         case CameraType.FOLLOW_TARGET:
-            Debug.Log("follow camera!");
-            break;
+            StartCoroutine("follow_target"); break;
         case CameraType.STATIONARY:
-            Debug.Log("stationary camera!");
-            break;
+            StartCoroutine("stationary"); break;
         default:
-            Debug.Log(active_camera.get_type() + " not set up!");
+            Debug.Log(active_camera.camera_type + " not set up!");
             break;
     }
 }
 
+IEnumerator follow_target(){
+    while(true){
+        active_camera.transform.position = Vector3.LerpUnclamped(active_camera.transform.position, active_camera.offset + active_camera.target.position, Time.deltaTime * active_camera.follow_speed);  
+        yield return null;
+    }
+}
+
+IEnumerator stationary(){
+    while(true){
+        Debug.Log("stationary camera!");
+        yield return null;
+    }
+}
+
 void end_active_camera(){
-    if(active_camera == null)
-        return;
-    active_camera.gameObject.SetActive(false);
+    if(active_camera != null)
+        active_camera.gameObject.SetActive(false);
+    if(movement_routine != null)
+        StopCoroutine(movement_routine);
 }
 
 public void remove_camera(CameraExtenstion cam){
