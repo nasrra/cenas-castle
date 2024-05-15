@@ -50,11 +50,15 @@ public void move_left_begin(){
 }
 
 IEnumerator move_left(){
-    while(true){
-        if(rb.velocity.x >= -move_speed)
-            rb.AddForce(new Vector2(-acceleration * Time.deltaTime, 0.0f));
+    while (true) {
+        // Calculate the difference between the current velocity and the desired maximum speed
+        float speedDifference = -move_speed - rb.velocity.x;
+        // Apply a force proportional to the speed difference
+        float forceMagnitude = acceleration * Mathf.Clamp01(-speedDifference / move_speed) * Time.deltaTime;
+        rb.AddForce(new Vector2(-forceMagnitude, 0.0f));
         yield return null;
     }
+
 }
 
 public void move_left_end(){
@@ -69,8 +73,13 @@ public void move_right_begin(){
 
 IEnumerator move_right(){
     while(true){
-        if(rb.velocity.x <= move_speed)
-            rb.AddForce(new Vector2(acceleration * Time.deltaTime, 0.0f));
+        // Calculate the difference between the current velocity and the desired maximum speed
+        float speedDifference = move_speed - rb.velocity.x;
+
+        // Apply a force proportional to the speed difference
+        float forceMagnitude = acceleration * Mathf.Clamp01(speedDifference / move_speed) * Time.deltaTime;
+        rb.AddForce(new Vector2(forceMagnitude, 0.0f));
+
         yield return null;
     }
 }
