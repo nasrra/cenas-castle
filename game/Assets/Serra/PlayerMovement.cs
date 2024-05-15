@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Serra{public class PlayerMovement : MonoBehaviour{
@@ -10,7 +11,8 @@ namespace Serra{public class PlayerMovement : MonoBehaviour{
 [SerializeField] Rigidbody2D rb;
 [SerializeField] LayerMask ground_layer;    
 [Header("Values")]
-[SerializeField] float move_speed; 
+[SerializeField] float move_speed;
+[SerializeField] float acceleration; 
 [SerializeField] float jump_force;
 [SerializeField] float jump_decay;
 [SerializeField] float ground_check_dst;
@@ -49,7 +51,8 @@ public void move_left_begin(){
 
 IEnumerator move_left(){
     while(true){
-        rb.AddForce(new Vector2(-move_speed, 0.0f));
+        if(rb.velocity.x >= -move_speed)
+            rb.AddForce(new Vector2(-acceleration, 0.0f));
         yield return null;
     }
 }
@@ -66,7 +69,8 @@ public void move_right_begin(){
 
 IEnumerator move_right(){
     while(true){
-        rb.AddForce(new Vector2(move_speed, 0.0f));
+        if(rb.velocity.x <= move_speed)
+            rb.AddForce(new Vector2(acceleration, 0.0f));
         yield return null;
     }
 }

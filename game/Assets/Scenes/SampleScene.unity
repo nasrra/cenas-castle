@@ -299,8 +299,9 @@ MonoBehaviour:
   ground_layer:
     serializedVersion: 2
     m_Bits: 8
-  move_speed: 10
-  jump_force: 30
+  move_speed: 25
+  acceleration: 0
+  jump_force: 70
   jump_decay: 2
   ground_check_dst: 1
   can_walk: 1
@@ -666,10 +667,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1631031060}
-  target: {fileID: 1631031061}
+  target: {fileID: 691828760}
   camera_type: 0
-  offset: {x: 0, y: 0, z: -10}
-  follow_speed: 1
+  offset: {x: 0, y: 6, z: -10}
+  follow_speed: 8
   lerp_distance: 2
   starting_camera: 1
 --- !u!81 &1631031059
@@ -740,7 +741,7 @@ Transform:
   m_GameObject: {fileID: 1631031057}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
