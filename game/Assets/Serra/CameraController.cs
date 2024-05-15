@@ -1,35 +1,63 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Video;
 
-namespace Serra{ public static class CameraController{
-
-
-static Dictionary<string, CameraExtenstion> cameras = new Dictionary<string, CameraExtenstion>();
-static CameraExtenstion active_camera;
+namespace Serra{ public class CameraController : MonoBehaviour{
 
 
-public static void add_camera(CameraExtenstion cam){
+Dictionary<string, CameraExtenstion> cameras = new Dictionary<string, CameraExtenstion>();
+CameraExtenstion active_camera;
+
+
+void Awake(){
+    Managers.camera_controller = this;
+}
+
+public void add_camera(CameraExtenstion cam){
     cameras.Add(cam.gameObject.name, cam);
     Debug.Log(cam.gameObject.name + " added camera!");
 }
 
-public static void set_active_camera(CameraExtenstion cam = null){
-    if(active_camera != null)
-        active_camera.gameObject.SetActive(false);
+public void set_active_camera(CameraExtenstion cam = null){
+    end_active_camera();
     active_camera = cam;
-    if(active_camera != null)
-        active_camera.gameObject.SetActive(true);
+    begin_active_camera();
 }
 
-public static CameraExtenstion get_actve_camera(){
+public CameraExtenstion get_actve_camera(){
     return active_camera;
 }
 
-public static void remove_camera(CameraExtenstion cam){
+void begin_active_camera(){
+    if(active_camera == null)
+        return;
+    active_camera.gameObject.SetActive(true);
+    switch(active_camera.get_type()){
+        case CameraType.FOLLOW_TARGET:
+            Debug.Log("follow camera!");
+            break;
+        case CameraType.STATIONARY:
+            Debug.Log("stationary camera!");
+            break;
+        default:
+            Debug.Log(active_camera.get_type() + " not set up!");
+            break;
+    }
+}
+
+void end_active_camera(){
+    if(active_camera == null)
+        return;
+    active_camera.gameObject.SetActive(false);
+}
+
+public void remove_camera(CameraExtenstion cam){
     cameras.Remove(cam.gameObject.name);
 }
+
+void OnDestroy(){
+    Managers.camera_controller = this;
+}
+
 
 
 }}

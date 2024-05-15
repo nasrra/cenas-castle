@@ -16,14 +16,18 @@ namespace Serra{ public class CameraExtenstion : MonoBehaviour{
 [SerializeField] bool starting_camera;
 
 void Start(){
-    CameraController.add_camera(this);
+    Managers.camera_controller.add_camera(this);
     gameObject.SetActive(false);
     if(starting_camera == true)
-        CameraController.set_active_camera(this);
+        Managers.camera_controller.set_active_camera(this);
+}
+
+public CameraType get_type(){
+    return camera_type;
 }
 
 void OnDestroy(){
-    CameraController.remove_camera(this);
+    Managers.camera_controller.remove_camera(this);
 }
 
 

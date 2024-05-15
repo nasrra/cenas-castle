@@ -654,7 +654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 1631031060}
   target: {fileID: 1631031061}
-  camera_type: 0
+  camera_type: 1
   offset: {x: 0, y: 0, z: -10}
   follow_speed: 1
   lerp_distance: 2
