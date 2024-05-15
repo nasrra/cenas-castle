@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +7,6 @@ namespace Serra{ public class CameraController : MonoBehaviour{
 
 Dictionary<string, CameraExtenstion> cameras = new Dictionary<string, CameraExtenstion>();
 CameraExtenstion active_camera;
-Coroutine movement_routine;
 
 
 void Awake(){
@@ -35,16 +33,7 @@ void begin_active_camera(){
         return;
 
     active_camera.gameObject.SetActive(true);
-
-    switch(active_camera.camera_type){
-        case CameraType.FOLLOW_TARGET:
-            StartCoroutine("follow_target"); break;
-        case CameraType.STATIONARY:
-            StartCoroutine("stationary"); break;
-        default:
-            Debug.Log(active_camera.camera_type + " not set up!");
-            break;
-    }
+    StartCoroutine("follow_target");
 }
 
 IEnumerator follow_target(){
@@ -54,18 +43,10 @@ IEnumerator follow_target(){
     }
 }
 
-IEnumerator stationary(){
-    while(true){
-        Debug.Log("stationary camera!");
-        yield return null;
-    }
-}
-
 void end_active_camera(){
     if(active_camera != null)
         active_camera.gameObject.SetActive(false);
-    if(movement_routine != null)
-        StopCoroutine(movement_routine);
+    StopCoroutine("follow_target");
 }
 
 public void remove_camera(CameraExtenstion cam){

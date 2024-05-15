@@ -230,7 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 519420031}
   target: {fileID: 519420032}
-  camera_type: 0
   offset: {x: 0, y: 0, z: -10}
   follow_speed: 1
   lerp_distance: 2
@@ -300,9 +299,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   move_speed: 25
-  acceleration: 0
-  jump_force: 70
-  jump_decay: 2
+  acceleration: 50
+  jump_force: 50
+  jump_decay: 4
   ground_check_dst: 1
   can_walk: 1
   can_jump: 1
@@ -668,7 +667,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 1631031060}
   target: {fileID: 691828760}
-  camera_type: 0
   offset: {x: 0, y: 6, z: -10}
   follow_speed: 8
   lerp_distance: 2

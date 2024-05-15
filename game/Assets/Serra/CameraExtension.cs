@@ -7,7 +7,6 @@ namespace Serra{ public class CameraExtenstion : MonoBehaviour{
 [SerializeField] new Camera camera;
 public Transform target;
 [Header("Variables")]
-public CameraType camera_type;
 public Vector3 offset;
 public float follow_speed;
 public float lerp_distance;
