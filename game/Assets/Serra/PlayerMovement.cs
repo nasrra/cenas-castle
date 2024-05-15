@@ -35,7 +35,10 @@ void Start(){
 void Update(){
     if(Physics2D.Raycast(transform.position, Vector2.down, ground_check_dst, ground_layer))
         can_jump = true;
+    
+    #if UNITY_EDITOR
     Debug.DrawRay(transform.position, Vector3.down * ground_check_dst, Color.green);
+    #endif
 }
 
 #region move_left
