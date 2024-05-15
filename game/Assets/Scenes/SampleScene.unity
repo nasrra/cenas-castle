@@ -300,7 +300,7 @@ MonoBehaviour:
     m_Bits: 8
   move_speed: 25
   acceleration: 50000
-  jump_force: 50000
+  jump_force: 35000
   jump_decay: 4
   ground_check_dst: 1
   can_walk: 1
@@ -321,7 +321,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 19.56
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6562e367488ee6848b3ad01447d681b1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
