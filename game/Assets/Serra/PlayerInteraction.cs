@@ -1,15 +1,15 @@
 using System;
 using UnityEngine;
 
-namespace Serra {public class PlayerInteraction : MonoBehaviour{
+namespace Serra {public class PlayerInteraction : Interactor{
+
+
+
+
 void Start(){
     if (InputSystem.get_action_map("Gameplay") is GameplayActionMap actionMap){
       actionMap.interact_event += ctx => interact();
     }
-}
-
-public void interact(){
-    Debug.Log("interaction!");
 }
 
 void OnDestroy(){
@@ -17,5 +17,8 @@ void OnDestroy(){
       actionMap.interact_event += ctx => interact();
     }   
 }
+
+
+
 
 }}
