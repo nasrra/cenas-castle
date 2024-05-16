@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Serra{public class PlayerMovement : MonoBehaviour{
+namespace Serra{public class CharacterController : MonoBehaviour{
 
 
 
@@ -23,18 +23,7 @@ namespace Serra{public class PlayerMovement : MonoBehaviour{
 
 
 
-void Start(){
-    if(InputSystem.get_action_map("Gameplay") is GameplayActionMap action_map){
-        action_map.move_left_begin_event    += ctx => move_left_begin(); 
-        action_map.move_left_end_event      += ctx => move_left_end();
-        action_map.move_right_begin_event   += ctx => move_right_begin(); 
-        action_map.move_right_end_event     += ctx => move_right_end();
-        action_map.jump_start_event         += ctx => jump_begin();
-        action_map.jump_end_event           += ctx => jump_end();
-    }
-}
-
-void Update(){
+void FixedUpdate(){
     if(Physics2D.Raycast(transform.position, Vector2.down, ground_check_dst, ground_layer))
         can_jump = true;
     
@@ -108,17 +97,6 @@ public void jump_end(){
     can_jump = false;
 }
 #endregion
-
-void OnDestroy(){
-    if(InputSystem.get_action_map("Gameplay") is GameplayActionMap action_map){
-        action_map.move_left_begin_event    -= ctx => move_left_begin(); 
-        action_map.move_left_end_event      -= ctx => move_left_end();
-        action_map.move_right_begin_event   -= ctx => move_right_begin(); 
-        action_map.move_right_end_event     -= ctx => move_right_end();
-        action_map.jump_start_event         -= ctx => jump_begin();
-        action_map.jump_end_event           -= ctx => jump_end();    
-    }    
-}
 
 
 
