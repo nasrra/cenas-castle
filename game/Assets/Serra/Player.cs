@@ -1,6 +1,7 @@
 using System;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using Unity.VisualScripting;
 
 namespace Serra{ public class Player : MonoBehaviour{
 
@@ -9,6 +10,7 @@ namespace Serra{ public class Player : MonoBehaviour{
 
 [Header("Components")]
 [SerializeField] CharacterController character_controller;
+[SerializeField] Health health;
 [SerializeField] Interactor interactor;
 Action<InputAction.CallbackContext> 
   interact_handler,

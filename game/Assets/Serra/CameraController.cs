@@ -15,7 +15,6 @@ void Awake(){
 
 public void add_camera(CameraExtenstion cam){
     cameras.Add(cam.gameObject.name, cam);
-    Debug.Log(cam.gameObject.name + " added camera!");
 }
 
 public void set_active_camera(CameraExtenstion cam = null){
