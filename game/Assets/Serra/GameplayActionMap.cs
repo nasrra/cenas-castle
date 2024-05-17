@@ -3,6 +3,10 @@ using UnityEngine.InputSystem;
 
 namespace Serra{public class GameplayActionMap : ActionMap{
 
+
+
+
+
 public event Action<InputAction.CallbackContext> 
     interact_event, 
     move_left_begin_event, 
@@ -11,6 +15,9 @@ public event Action<InputAction.CallbackContext>
     move_right_end_event,
     jump_start_event,
     jump_end_event;
+
+
+
 
 public override void subscribe_to_events(PlayerInput input){
     input.actions["interact"].performed     += ctx => interact_event?.Invoke(ctx);
@@ -30,5 +37,8 @@ public override void unsubscribe_to_events(PlayerInput input){
     input.actions["jump"].performed         -= ctx => jump_start_event?.Invoke(ctx);
     input.actions["jump"].canceled          -= ctx => jump_end_event?.Invoke(ctx);
 }
+
+
+
 
 }}

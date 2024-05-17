@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 namespace Serra{ public class SceneLoader : MonoBehaviour{
 
 
@@ -23,7 +24,7 @@ public bool is_entry_point(string entry_point){
 }
 
 public void load_scene(){
-    Debug.Log("loading scene "+scene_to_load);
+    SceneManager.LoadScene(scene_to_load);
 }
 
 void OnDestroy(){
