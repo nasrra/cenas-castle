@@ -25,6 +25,7 @@ public bool is_entry_point(string entry_point){
 
 public void load_scene(){
     SceneManager.LoadScene(scene_to_load);
+    Managers.scene_entry_point = entry_point;
 }
 
 void OnDestroy(){
