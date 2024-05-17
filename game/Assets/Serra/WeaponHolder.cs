@@ -20,6 +20,8 @@ void Start(){
 }
 
 void link_weapon(){
+    if(weapon == null)
+        return;
     action_1_event += weapon.action_1;
     action_2_event += weapon.action_2;
 }
@@ -31,14 +33,18 @@ public void set_weapon(Weapon weapon){
 }
 
 public void use_action_1(){
+    Debug.Log("j");
     action_1_event?.Invoke();
 }
 
-public void user_action_2(){
+public void use_action_2(){
+    Debug.Log("k");
     action_2_event?.Invoke();
 }
 
 void unlink_weapon(){
+    if(weapon == null)
+        return;
     action_1_event -= weapon.action_1;
     action_2_event -= weapon.action_2;
 }
