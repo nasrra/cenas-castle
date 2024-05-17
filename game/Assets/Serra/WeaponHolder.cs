@@ -33,12 +33,10 @@ public void set_weapon(Weapon weapon){
 }
 
 public void use_action_1(){
-    Debug.Log("j");
     action_1_event?.Invoke();
 }
 
 public void use_action_2(){
-    Debug.Log("k");
     action_2_event?.Invoke();
 }
 
