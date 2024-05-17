@@ -29,7 +29,6 @@ void OnTriggerExit2D(Collider2D other){
 
 public void interact(){
     interation_event?.Invoke();
-    Debug.Log(gameObject.name + " interacted!");
 }
 
 

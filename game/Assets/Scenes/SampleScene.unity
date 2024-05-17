@@ -244,8 +244,8 @@ GameObject:
   m_Component:
   - component: {fileID: 691828760}
   - component: {fileID: 691828765}
-  - component: {fileID: 691828764}
   - component: {fileID: 691828761}
+  - component: {fileID: 691828764}
   - component: {fileID: 691828762}
   - component: {fileID: 691828763}
   m_Layer: 0
@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0df210d361a624d863887d90534c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character_controller: {fileID: 691828761}
   interactor: {fileID: 691828764}
 --- !u!1 &950397951
 GameObject:
@@ -768,7 +769,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2030369613}
+  - component: {fileID: 2030369615}
   - component: {fileID: 2030369612}
+  - component: {fileID: 2030369614}
   - component: {fileID: 2030369611}
   m_Layer: 0
   m_Name: interactable
@@ -851,6 +854,35 @@ Transform:
   - {fileID: 2052012652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2030369614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030369610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d0cc25117b3514ca4c343c97cb704a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entry_point: 1
+  scene_to_load: 2
+  exit_point: 1
+--- !u!114 &2030369615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030369610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b35c38a1218e741b3fc5c1e2bf907c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: {fileID: 2030369612}
+  scene_loader: {fileID: 2030369614}
 --- !u!1 &2052012651
 GameObject:
   m_ObjectHideFlags: 0
