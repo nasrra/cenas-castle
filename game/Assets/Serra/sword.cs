@@ -23,7 +23,6 @@ public override void disable_dmg_collider(){
 }
 
 void OnTriggerEnter2D(Collider2D other){
-    Debug.Log(other.name+"s");
     Health other_health = other.GetComponent<Health>();
     if(other.tag == "Enemy"){
         if(other_health != null)
