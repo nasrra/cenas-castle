@@ -41,14 +41,22 @@ void Start(){
         weapon_action_2_handler   = ctx => weapon_holder.use_action_2();
         action_map.interact_event           += interact_handler;
         action_map.move_left_begin_event    += move_left_begin_handler;
+        action_map.move_left_begin_event    += ctx => flip_player(true);
         action_map.move_left_end_event      += move_left_end_handler;
         action_map.move_right_begin_event   += move_right_begin_handler;
+        action_map.move_right_begin_event    += ctx => flip_player(false);
         action_map.move_right_end_event     += move_right_end_handler;
         action_map.jump_start_event         += jump_begin_handler;
         action_map.jump_end_event           += jump_end_handler;
         action_map.weapon_action_1_event    += weapon_action_1_handler;
         action_map.weapon_action_2_event    += weapon_action_2_handler;
     }        
+}
+
+public void flip_player(bool flag){
+    gameObject.transform.rotation = (flag == true)
+        ?Quaternion.Euler(0, 180, 0) 
+        :Quaternion.Euler(0, 0, 0); 
 }
 
 void OnDestroy(){
