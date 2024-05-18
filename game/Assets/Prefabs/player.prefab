@@ -140,6 +140,8 @@ MonoBehaviour:
   health: {fileID: 5244944151113042232}
   interactor: {fileID: 8250424073364390577}
   weapon_holder: {fileID: 6180587878374771760}
+  touch_damage: 1
+  touch_pushback: 50
 --- !u!114 &8215760298596796908
 MonoBehaviour:
   m_ObjectHideFlags: 0

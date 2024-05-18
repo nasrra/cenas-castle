@@ -84,6 +84,7 @@ void OnDestroy(){
 void OnCollisionEnter2D(Collision2D other){
     if(other.gameObject.tag == "Enemy"){
         character_controller.apply_force(ForceMode2D.Impulse, ((transform.position - other.transform.position)+new Vector3(0,0.5f,0)).normalized * touch_pushback);
+        health.damage(touch_damage);
     }
 }
 

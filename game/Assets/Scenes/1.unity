@@ -1162,7 +1162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1605083067853370360, guid: b0c5fbe3ba621294694ed5174ae9bdb1, type: 3}
       propertyPath: touch_pushback
-      value: 500
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5629033659376995558, guid: b0c5fbe3ba621294694ed5174ae9bdb1, type: 3}
       propertyPath: m_LocalPosition.x

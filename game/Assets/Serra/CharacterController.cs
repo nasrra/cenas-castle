@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
 namespace Serra{public class CharacterController : MonoBehaviour{
