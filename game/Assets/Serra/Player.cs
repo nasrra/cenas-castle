@@ -1,7 +1,6 @@
 using System;
 using UnityEngine.InputSystem;
 using UnityEngine;
-using Unity.VisualScripting;
 
 namespace Serra{ public class Player : MonoBehaviour{
 
@@ -13,6 +12,9 @@ namespace Serra{ public class Player : MonoBehaviour{
 [SerializeField] Health health;
 [SerializeField] Interactor interactor;
 [SerializeField] WeaponHolder weapon_holder;
+[Header("variables")]
+[SerializeField] float touch_damage;
+[SerializeField] float touch_pushback;
 Action<InputAction.CallbackContext> 
   interact_handler,
   move_left_begin_handler,
@@ -76,6 +78,12 @@ void OnDestroy(){
         action_map.jump_end_event           -= jump_end_handler;
         action_map.weapon_action_1_event    -= weapon_action_1_handler;
         action_map.weapon_action_2_event    -= weapon_action_2_handler;
+    }
+}
+
+void OnCollisionEnter2D(Collision2D other){
+    if(other.gameObject.tag == "Enemy"){
+        character_controller.apply_force(ForceMode2D.Impulse, ((transform.position - other.transform.position)+new Vector3(0,0.5f,0)).normalized * touch_pushback);
     }
 }
 

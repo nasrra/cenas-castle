@@ -98,6 +98,14 @@ public void jump_end(){
 }
 #endregion
 
+public void apply_force(ForceMode2D mode, Vector2 force){
+    rb.AddForce(force, mode);
+}
+
+public void set_velocity(Vector2 velocity){
+    rb.velocity = velocity;
+}
+
 
 
 
